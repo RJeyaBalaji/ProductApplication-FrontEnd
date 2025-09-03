@@ -1,0 +1,106 @@
+.checkout-wrapper {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 40px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color: #333;
+}
+
+.checkout-title {
+  font-size: 2.2rem;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #2b2b2b;
+}
+
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.form-section {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 20px;
+}
+
+.form-section h3 {
+  font-size: 1.3rem;
+  margin-bottom: 16px;
+  color: #444;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.form-row label {
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.form-row input,
+.form-row textarea,
+.form-row select {
+  padding: 12px 14px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #f9f9f9;
+  transition: border 0.3s ease;
+}
+
+.form-row input:focus,
+.form-row textarea:focus,
+.form-row select:focus {
+  border-color: #3f51b5;
+  outline: none;
+  background: #fff;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.btn-primary {
+  background-color: #3f51b5;
+  color: #fff;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #2c3aa9;
+}
+
+@media (max-width: 600px) {
+  .checkout-wrapper {
+    padding: 20px;
+  }
+
+  .form-row {
+    margin-bottom: 12px;
+  }
+
+  .btn-primary {
+    width: 100%;
+  }
+}
+
+.error {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 4px;
+}

@@ -1,0 +1,18 @@
+<nav class="navbar">
+  <a class="navbar-brand" routerLink="/products" routerLinkActive="active">Zayra</a>
+  <ul class="navbar-links">
+    <!-- <li><a routerLink="/products" routerLinkActive="active">Home</a></li> -->
+    <li><a routerLink="/add-product" routerLinkActive="active" *ngIf="isAdmin">Add Product</a></li>
+    <li><a routerLink="/my-orders" class="nav-link">My Orders</a></li>
+    <li>
+      <div class="cart-link-wrapper">
+        <a routerLink="/cart" class="nav-link cart-icon">🛒</a>
+        <div *ngIf="cartCount > 0" class="cart-count">{{ cartCount }}</div>
+      </div>
+    </li>
+    <li><a routerLink="/profile" class="nav-link cart-icon">👤</a></li>
+    <li *ngIf="isLoggedIn">
+      <a href="#"   (click)="logout()" class="nav-link cart-icon">🏠</a>
+    </li>
+  </ul>
+</nav>

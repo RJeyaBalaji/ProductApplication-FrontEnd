@@ -1,0 +1,43 @@
+<div class="orders-container">
+  <h2 class="page-title">🛒 My Orders</h2>
+
+  <div *ngIf="loading" class="status-banner info">Loading your orders...</div>
+  <div *ngIf="error" class="status-banner error">{{ error }}</div>
+  <div *ngIf="!loading && orders.length === 0" class="status-banner warning">
+    You have no orders yet.
+  </div>
+
+  <div *ngFor="let order of orders" class="order-card">
+    <div class="order-header">
+      <div>
+        <span class="order-id">Order #{{ order.id }}</span>
+        <span class="order-date">{{ order.orderDate | date: 'medium' }}</span>
+      </div>
+      <div class="order-status">{{ order.status }}</div>
+    </div>
+
+    <div class="order-details">
+      <p><strong>Payment:</strong> {{ order.paymentSuccessful ? '✅ Successful' : '❌ Failed' }}</p>
+      <p><strong>Payment Method:</strong> {{ order.paymentMethod | uppercase }}</p>
+      <p *ngIf="order.shippingAddress"><strong>Shipping Address:</strong> {{ order.shippingAddress }}</p>
+      <p *ngIf="order.billingAddress"><strong>Billing Address:</strong> {{ order.billingAddress }}</p>
+
+      <h5>Items:</h5>
+      <ul class="item-list">
+        <li *ngFor="let item of order.items" class="item">
+          <div class="item-info">
+            <strong>{{ item.product.name }}</strong> <span class="item-qty">(x{{ item.quantity }})</span><br />
+            <small class="item-desc">{{ item.product.description }}</small>
+          </div>
+          <div class="item-price">
+            ₹{{ item.product.price * item.quantity | number:'1.2-2' }}
+          </div>
+        </li>
+      </ul>
+      <div class="order-total">
+        <strong>Total:</strong>
+            ₹{{ getOrderTotal(order) | number:'1.2-2' }}
+      </div>
+    </div>
+  </div>
+</div>

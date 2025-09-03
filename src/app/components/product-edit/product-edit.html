@@ -1,0 +1,64 @@
+<div class="edit-container" *ngIf="product && editForm">
+  <h2 class="edit-title">🛠️ Edit Product</h2>
+
+  <form [formGroup]="editForm" (ngSubmit)="updateProduct()" class="edit-form">
+    <div class="image-preview">
+      <img
+        *ngIf="product.imagedata && product.imagetype"
+        [src]="'data:' + product.imagetype + ';base64,' + product.imagedata"
+        alt="{{ product.name }}"
+        class="product-image"
+      />
+      <input type="file" (change)="onImageSelected($event)" />
+    </div>
+
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Product Name</label>
+        <input type="text" formControlName="name" />
+      </div>
+
+      <div class="form-group full-width">
+        <label>Description</label>
+        <textarea formControlName="description" rows="3"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Brand</label>
+        <input type="text" formControlName="brand" />
+      </div>
+
+      <div class="form-group">
+        <label>Category</label>
+        <input type="text" formControlName="category" />
+      </div>
+
+      <div class="form-group">
+        <label>Price (₹)</label>
+        <input type="number" formControlName="price" />
+      </div>
+
+      <div class="form-group">
+        <label>Stock Quantity</label>
+        <input type="number" formControlName="stockQuantity" />
+      </div>
+
+      <div class="form-group">
+        <label>Release Date</label>
+        <input type="date" formControlName="releaseDate" />
+      </div>
+
+      <div class="form-group checkbox-group">
+        <label>
+          <input type="checkbox" formControlName="productAvailable" />
+          Available
+        </label>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-success">💾 Update</button>
+      <button type="button" class="btn btn-outline-danger" (click)="deleteProduct()">🗑️ Delete</button>
+    </div>
+  </form>
+</div>

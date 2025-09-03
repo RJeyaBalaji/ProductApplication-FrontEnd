@@ -1,0 +1,78 @@
+<div class="checkout-wrapper">
+  <h2 class="checkout-title">🧾 Checkout</h2>
+
+  <form [formGroup]="checkoutForm" (ngSubmit)="placeOrder()" class="checkout-form">
+
+    <div class="form-section">
+      <h3>Customer Information</h3>
+
+      <div class="form-row">
+        <label for="phone">Mobile Number</label>
+        <input type="tel" id="phone" formControlName="phone" required pattern="[0-9]{10}" />
+        <div class="error" *ngIf="checkoutForm.get('phone')?.touched && checkoutForm.get('phone')?.invalid">
+          <span *ngIf="checkoutForm.get('phone')?.errors?.['required']">Phone is required.</span>
+          <span *ngIf="checkoutForm.get('phone')?.errors?.['pattern']">Must be 10 digits.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h3>Shipping Address</h3>
+
+      <div class="form-row">
+        <label for="address">Address</label>
+        <textarea id="address" formControlName="address" rows="3" required></textarea>
+        <div class="error" *ngIf="checkoutForm.get('address')?.touched && checkoutForm.get('address')?.invalid">
+          Address is required.
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label for="city">City</label>
+        <input type="text" id="city" formControlName="city" required />
+        <div class="error" *ngIf="checkoutForm.get('city')?.touched && checkoutForm.get('city')?.invalid">
+          City is required.
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label for="state">State</label>
+        <input type="text" id="state" formControlName="state" required />
+        <div class="error" *ngIf="checkoutForm.get('state')?.touched && checkoutForm.get('state')?.invalid">
+          State is required.
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label for="pincode">Pincode</label>
+        <input type="text" id="pincode" formControlName="pincode" required pattern="[0-9]{6}" />
+        <div class="error" *ngIf="checkoutForm.get('pincode')?.touched && checkoutForm.get('pincode')?.invalid">
+          <span *ngIf="checkoutForm.get('pincode')?.errors?.['required']">Pincode is required.</span>
+          <span *ngIf="checkoutForm.get('pincode')?.errors?.['pattern']">Pincode must be 6 digits.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h3>Payment</h3>
+      <div class="form-row">
+        <label for="paymentMethod">Select Payment Method</label>
+        <select id="paymentMethod" formControlName="paymentMethod" required>
+          <option value="cod">Cash on Delivery</option>
+          <option value="card">Credit/Debit Card</option>
+          <option value="upi">UPI</option>
+        </select>
+        <div class="error" *ngIf="checkoutForm.get('paymentMethod')?.touched && checkoutForm.get('paymentMethod')?.invalid">
+          Please select a payment method.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn-primary" [disabled]="isLoading">
+        <span *ngIf="!isLoading">🛍️ Place Order</span>
+        <p *ngIf="isLoading" class="loading-text">⏳ Processing your order...</p>
+      </button>
+    </div>
+  </form>
+</div>

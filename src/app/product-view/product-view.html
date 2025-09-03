@@ -1,0 +1,30 @@
+<div class="product-detail-container" *ngIf="product">
+  <div class="product-header">
+    <h2>{{ product.name }}</h2>
+    <div class="action-icons" *ngIf="isAdmin">
+      <button class="icon-button" (click)="editProduct()" title="Edit Product">✏️</button>
+      <button class="icon-button danger" (click)="deleteProduct()" title="Delete Product">🗑️</button>
+    </div>
+  </div>
+
+  <img
+    *ngIf="product.imagedata && product.imagetype"
+    [src]="'data:' + product.imagetype + ';base64,' + product.imagedata"
+    alt="{{ product.name }}"
+    class="detail-img"
+  />
+
+  <table class="product-table">
+    <tr><td><strong>Description:</strong></td><td>{{ product.description }}</td></tr>
+    <tr><td><strong>Brand:</strong></td><td>{{ product.brand }}</td></tr>
+    <tr><td><strong>Category:</strong></td><td>{{ product.category }}</td></tr>
+    <tr><td><strong>Price:</strong></td><td>₹{{ product.price }}</td></tr>
+    <tr><td><strong>Stock:</strong></td><td>{{ product.stockQuantity }}</td></tr>
+    <tr><td><strong>Available:</strong></td><td>{{ product.productAvailable ? 'Yes' : 'No' }}</td></tr>
+    <tr><td><strong>Release Date:</strong></td><td>{{ product.releaseDate | date: 'dd/MM/yyyy' }}</td></tr>
+  </table>
+
+  <div class="cart-action">
+    <button class="btn btn-cart" (click)="addToCart()">🛒 Add to Cart</button>
+  </div>
+</div>

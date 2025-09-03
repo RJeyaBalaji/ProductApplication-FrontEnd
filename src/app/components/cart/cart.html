@@ -1,0 +1,50 @@
+<div class="cart-container">
+  <h2 class="cart-title">🛒 Cart</h2>
+
+  <div *ngIf="cartItems.length === 0" class="empty-cart">
+    <p>Your cart is currently empty.</p>
+  </div>
+
+  <div *ngIf="cartItems.length > 0" class="cart-table">
+    <div class="cart-header">
+      <span>Product</span>
+      <span>Qty</span>
+      <span>Price</span>
+      <span>Action</span>
+    </div>
+
+    <div *ngFor="let item of cartItems" class="cart-row">
+      <span class="product-info">
+        <img
+          *ngIf="item.product.imagedata && item.product.imagetype"
+          [src]="'data:' + item.product.imagetype + ';base64,' + item.product.imagedata"
+          alt="{{ item.product.name }}"
+          class="product-thumb"
+        />
+        <span class="product-name">{{ item.product.name }}</span>
+      </span>
+
+      <span class="qty-control">
+        <button class="btn-qty" (click)="decrementQty(item)">−</button>
+        <span class="qty">{{ item.quantity }}</span>
+        <button class="btn-qty" (click)="incrementQty(item)">+</button>
+      </span>
+
+      <span>₹{{ item.product.price * item.quantity }}</span>
+
+      <span>
+        <button class="btn btn-remove" (click)="removeItem(item)">Remove</button>
+      </span>
+    </div>
+
+    <div class="cart-summary">
+      <div class="total-label">Total:</div>
+      <div class="total-value">₹{{ getTotal() }}</div>
+    </div>
+
+    <div class="cart-actions">
+      <button class="btn btn-clear" (click)="clearCart()">Clear Cart</button>
+      <button class="btn btn-checkout" (click)="goToCheckout()">Proceed to Checkout</button>
+    </div>
+  </div>
+</div>

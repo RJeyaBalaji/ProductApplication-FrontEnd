@@ -1,0 +1,22 @@
+<div class="product-container">
+  <h2 class="section-title">Product List</h2>
+  <div *ngIf="products.length === 0" class="no-products">No products available.</div>
+
+  <div class="product-grid">
+    <div *ngFor="let product of products" class="product-card" (click)="viewProduct(product.id)">
+      <div class="card">
+        <img
+          *ngIf="product.imagedata && product.imagetype"
+          [src]="'data:' + product.imagetype + ';base64,' + product.imagedata"
+          alt="{{ product.name }}"
+          class="card-img-top"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ product.name }}</h5>
+          <p class="card-text">{{ product.description }}</p>
+          <p class="card-price">₹{{ product.price }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
